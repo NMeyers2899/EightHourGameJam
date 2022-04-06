@@ -38,8 +38,10 @@ public class EnemyMovementBehavior : MovementBehavior
     {
         if (other.transform == Target)
         {
-            // Destroy the object the component is attached to.
-            Destroy(other.gameObject);
+            CharacterOneInputBehavior character = other.GetComponent<CharacterOneInputBehavior>();
+            if (character)
+                character.Destroy();
+
             Destroy(gameObject);
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterOneInputBehavior : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class CharacterOneInputBehavior : MonoBehaviour
 
     [SerializeField]
     private int _ammo = 0;
+
+    [SerializeField]
+    private Text _deathText;
+
+    [SerializeField]
+    private Button _returnButton;
 
     public int Ammo
     {
@@ -47,5 +54,17 @@ public class CharacterOneInputBehavior : MonoBehaviour
             _gun.Fire();
             Ammo--;
         }       
+    }
+
+    public void Destroy()
+    {
+        OnDeath();
+        Destroy(gameObject);
+    }
+
+    public void OnDeath()
+    {
+        _deathText.enabled = true;
+        _returnButton.gameObject.SetActive(true);
     }
 }
